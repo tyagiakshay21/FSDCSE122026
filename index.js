@@ -126,23 +126,101 @@
 // }
 // handleData();
 
-const orderSuccess = new Promise((resolve,reject)=>{
-    if(true){
-        resolve("Order placed sucessfully");
-    }
-    else{
-        reject("Order failed");
-    }
+// const orderRecieved = new Promise((resolve,reject)=>{
+//     if(true){
+//      setTimeout(()=>{
+//         resolve("Order recieved");},1000)  
+   
+//     }
+//     else{
+//      setTimeout(()=>{reject("Order failed");},1000)   
+//     }
+// }
+// )
+// async function orderHandel(){
+//     try{
+//         const result = await orderRecieved;
+//         console.log(result);
+//     }catch(error){
+//         console.log(error);
+//     }finally{
+//         console.log("All done");
+//     }
+// }
+// orderHandel();
+// const button =document.getElementById("btn");
+// const container = document.getElementById("container");
+// console.log(button);
+// async function fetchData(){
+    // const serverData = await fetch("https://fakestoreapi.com/products");
+    // const jsonData = await serverData.json();
+   // console.log(jsonData);
+//    container.innerHTML=JSON.stringify(`${jsonData}`);
+// }
+// button .addEventListener("click",fetchData);
+// //fetchData();
+
+// async function fetchData(){
+//   try{
+//     const serverData = await fetch("https://fakestoreapi.com/products");
+//        const jsonData =await serverData.json();
+//        console.log(jsonData);
+//   }catch(e){
+//     //loading.innerHTML ='<h2>Loading error</h2>';
+//   }
+//   finally{
+//     //loading.innerHTML ='<h2>Loading done</h2>';
+//   }
+// }
+// button.addEventListener("click",fetchData);
+
+// const loading=document.createElement('div');
+// container.appendChild(loading);
+
+// async function fetchData(){
+//   try{
+//     loading.innerHTML ='<h2>Loading Data</h2>';
+//     const serverData = await fetch ("https://fakestoreapi.com/products");
+//     const jsonData = await serverData.json();
+//     console.log(jsonData);
+//     container.innerHTML=JSON.stringify(jsonData);
+//   }catch(e){
+//     loading.innerHTML ='<h2>Loading error</h2>';
+//   }finally{
+//     loading.innerHTML ='';
+//   }
+// }
+// button.addEventListener("click",fetchData);
+
+const button =document.getElementById("btn");
+const container = document.getElementById("container");
+async function fetchData(){
+  try{
+    loading.innerHTML ='<h2>Loading Data</h2>';
+    const serverData = await fetch ("https://fakestoreapi.com/products");
+    const jsonData = await serverData.json();
+    console.log(jsonData);
+    container.innerHTML=JSON.stringify(jsonData);
+    let table = '<table border = "4px">';
+     '<tr><td>ITEM_NAME</td><td>TITLE</td><td>PRICE</td></tr>';
+     ${
+      jsonData.map((ele)=>(
+        <tr>
+          <td><img src="${ele.image}" alt="${ele.title}" width="100"/></td>
+          <td>${ele.id}</td>
+          <td>${ele.title}</td>
+          <td>${ele.price}</td> 
+        </tr>
+      ))
+     }
+     <table>
+      container.innerHTML = table;
+     </table>
+
+  }catch(e){
+    loading.innerHTML ='<h2>Loading error</h2>';
+  }finally{
+    loading.innerHTML ='';
+  }
 }
-)
-async function orderHandel(){
-    try{
-        const result = await orderSuccess;
-        console.log(result);
-    }catch(error){
-        console.log(error);
-    }finally{
-        console.log("All done");
-    }
-}
-orderHandel();
+button.addEventListener("click",fetchData);
